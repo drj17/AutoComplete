@@ -84,6 +84,7 @@ time, mark, audio, video {
 body {
   background-image: url("background.jpg");
   background-color: #c5f4b0;
+  padding: 20px;
 }
 
 .search-container {
@@ -133,7 +134,7 @@ body {
 }
 
 .result:hover {
-  background-color: #f2f2f2;
+  background-color: #bcc0c6;
   transition: .2s;
 }
 .result h1 {
@@ -143,7 +144,7 @@ body {
 }
 
 .selected {
-  background-color: #f2f2f2;
+  background-color: #bcc0c6;
 }
 
 .result h2 {

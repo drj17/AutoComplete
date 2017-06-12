@@ -36,11 +36,12 @@ export default class Search extends React.Component {
 
   handleInput(event){
     this.setState({inputVal: event.currentTarget.value, loading: true, currentSelection: 0});
-    const matches = [];
+    let matches = [];
     let that = this;
     let searchUrl = `http://niche-recruiting-autocomplete.appspot.com/search/?query=${event.currentTarget.value}` + "&?sid=" + Math.random();
     window.JSONPUtil.LoadJSONP(searchUrl, function (response) {
       response.results.forEach(result => matches.push(result));
+      matches = matches.slice(0, 11);
       that.setState({results: matches, loading: false});
     });
   }
