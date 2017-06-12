@@ -1,9 +1,9 @@
 import React from 'react';
 
-const SearchIndexItem = ({ result }) => (
-  <section className="result">
+const SearchIndexItem = ({ result, selected }) => (
+  <section className={`result ${selected}`}>
+    <h2>{result.location}</h2>
     <h1>{result.name}</h1>
-    <p>{result.location}</p>
   </section>
 );
 
