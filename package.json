@@ -5,7 +5,8 @@
   "main": "JSONPUtil.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "webpack -p"
+    "start": "webpack -p",
+    "postinstall": "webpack -p"
   },
   "keywords": [],
   "author": "",
