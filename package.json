@@ -4,9 +4,7 @@
   "description": "",
   "main": "JSONPUtil.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "webpack -p",
-    "postinstall": "webpack -p"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
   "author": "",
