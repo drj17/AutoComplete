@@ -12,15 +12,18 @@ export default class Search extends React.Component {
     };
     this.handleInput = this.handleInput.bind(this);
     this.handleKeyPress = this.handleKeyPress.bind(this);
+    this.handleBlur = this.handleBlur.bind(this);
   }
 
   handleKeyPress(event) {
     if(event.key === "ArrowDown"){
+      event.preventDefault();
       if(this.state.currentSelection !== this.state.results.length - 1){
         this.setState({currentSelection: this.state.currentSelection + 1});
       }
     }
     if(event.key === "ArrowUp"){
+      event.preventDefault();
       if(this.state.currentSelection !== 0){
         this.setState({currentSelection: this.state.currentSelection - 1});
       }
@@ -32,6 +35,10 @@ export default class Search extends React.Component {
 
   componentDidMount() {
     window.addEventListener('keydown', this.handleKeyPress);
+  }
+
+  handleBlur(){
+    this.setState({inputVal: '', results: []});
   }
 
   handleInput(event){
@@ -48,12 +55,12 @@ export default class Search extends React.Component {
   render() {
     let results = "";
     if(this.state.loading){
-      results = <div className="loader"></div>;
+      results = <li className="loading">Loading...</li>;
     } else{
       results = this.state.results.map((result, i) => {
         let selected = "unselected";
         if(i === this.state.currentSelection){
-          selected = "selected";
+          selected = "selected-header";
         }
         return (
           <a key={i} href={`${this.state.results[i].url}`}><SearchIndexItem result={result} selected={selected}/></a>
@@ -61,18 +68,16 @@ export default class Search extends React.Component {
       });
     }
     return(
-      <div className="search-container">
-        <h1 className="header">Find Your Niche</h1>
-        <div className='auto'>
+      <div className="search-container-header">
           <input
-            className="search-bar"
+            onBlur={this.handleBlur}
+            className="search-bar-header"
             onChange={this.handleInput}
             value={this.state.inputVal}
             placeholder='Search...'/>
-          <ul className="results-list">
+          <ul className="results-list-header">
             {results}
           </ul>
-        </div>
       </div>
     );
   }

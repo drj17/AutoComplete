@@ -1,8 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Search from './search';
+import AutoComplete from './autocomplete';
 
 document.addEventListener("DOMContentLoaded", () => {
 	const root = document.getElementById("root");
-	ReactDOM.render(<Search/>, root);
+	ReactDOM.render(<AutoComplete/>, root);
 });
