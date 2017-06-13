@@ -11,10 +11,10 @@ export default class Search extends React.Component {
       currentSelection: 0
     };
     this.handleInput = this.handleInput.bind(this);
-    this.handleSelection = this.handleSelection.bind(this);
+    this.handleKeyPress = this.handleKeyPress.bind(this);
   }
 
-  handleSelection(event) {
+  handleKeyPress(event) {
     if(event.key === "ArrowDown"){
       if(this.state.currentSelection !== this.state.results.length - 1){
         this.setState({currentSelection: this.state.currentSelection + 1});
@@ -31,26 +31,24 @@ export default class Search extends React.Component {
   }
 
   componentDidMount() {
-    window.addEventListener('keydown', this.handleSelection);
+    window.addEventListener('keydown', this.handleKeyPress);
   }
 
   handleInput(event){
     this.setState({inputVal: event.currentTarget.value, loading: true, currentSelection: 0});
     let matches = [];
-    let that = this;
     let searchUrl = `http://niche-recruiting-autocomplete.appspot.com/search/?query=${event.currentTarget.value}` + "&?sid=" + Math.random();
-    window.JSONPUtil.LoadJSONP(searchUrl, function (response) {
+    window.JSONPUtil.LoadJSONP(searchUrl, (response) => {
       response.results.forEach(result => matches.push(result));
-      matches = matches.slice(0, 11);
-      that.setState({results: matches, loading: false});
+      matches = matches.slice(0, 11); //truncate results
+      this.setState({results: matches, loading: false});
     });
   }
-
 
   render() {
     let results = "";
     if(this.state.loading){
-      results = <div className="loader">Loading...</div>;
+      results = <div className="loader"></div>;
     } else{
       results = this.state.results.map((result, i) => {
         let selected = "unselected";
