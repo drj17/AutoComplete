@@ -63,7 +63,10 @@ export default class Search extends React.Component {
           selected = "selected-header";
         }
         return (
-          <a key={i} onMouseDown={() => {window.location = this.state.results[i].url;}}><SearchIndexItem result={result} selected={selected}/></a>
+          <a key={i}
+             onMouseDown={() => {window.location = this.state.results[i].url;}}>
+             <SearchIndexItem result={result} selected={selected}/>
+          </a>
         );
       });
     }
