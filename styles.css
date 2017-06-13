@@ -25,6 +25,10 @@ time, mark, audio, video {
 
 }
 
+a:hover {
+	cursor: pointer;
+}
+
 .loader,
 .loader:before,
 .loader:after {
